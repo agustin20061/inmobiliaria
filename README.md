@@ -1,30 +1,46 @@
 # inmobiliaria
 Santiago Esparrach, Agustin Gliksman y Federico Holm
 
-# App
+## About
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.5.
+This project was created with [express-generator-typescript](https://github.com/seanpmaxwell/express-generator-typescript).
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Available Scripts
 
-## Code scaffolding
+### `npm run dev`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run the server in development mode.
 
-## Build
+### `npm test`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run all unit-tests with hot-reloading.
 
-## Running unit tests
+### `npm test -- --testFile="name of test file" (i.e. --testFile=Users).`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run a single unit-test.
 
-## Running end-to-end tests
+### `npm run test:no-reloading`
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Run all unit-tests without hot-reloading.
 
-## Further help
+### `npm run lint`
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Check for linting errors.
+
+### `npm run build`
+
+Build the project for production.
+
+### `npm start`
+
+Run the production build (Must be built first).
+
+### `npm start -- --env="name of env file" (default is production).`
+
+Run production build with a different env file.
+
+
+## Additional Notes
+
+- If `npm run dev` gives you issues with bcrypt on MacOS you may need to run: `npm rebuild bcrypt --build-from-source`. 
