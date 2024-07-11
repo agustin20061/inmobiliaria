@@ -68,7 +68,8 @@ const propiedadSchema = new mongoose.Schema({
 const compraSchema = new mongoose.Schema({
     propiedad: propiedadSchema,
     calificacion: Number,
-    comentario: String
+    comentario: String,
+    vendedor: Number
 });
 
 const usuarioSchema = new mongoose.Schema({
@@ -81,7 +82,6 @@ const usuarioSchema = new mongoose.Schema({
     nombreUsuario: String,
     contrasenia: String,
     fechaNacimiento: Date,
-    propiedades: [Number],
     direccion: direccionSchema,
     compras: [compraSchema]
 });
@@ -94,5 +94,13 @@ const usuarioSchema = new mongoose.Schema({
 });*/
 
 export default {
-    // Aquí puedes exportar tus schemas si es necesario
-};
+    direccionSchema,
+    caracteristicasSchema,
+    mensajeSchema,
+    chatSchema,
+    preguntaSchema,
+    propiedadSchema,
+    compraSchema,
+    usuarioSchema,
+    //tipoPropiedadSchema
+} as const;

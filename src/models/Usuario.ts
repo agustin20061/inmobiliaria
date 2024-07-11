@@ -23,7 +23,6 @@ export interface IUsuario {
   nombreUsuario: string;
   contrasenia: string;
   fechaNacimiento: Date;
-  propiedades: [IPropiedad];
   direccion: IDireccion;
   compras: [ICompra];
 }
@@ -43,7 +42,6 @@ function new_(
   nombreUsuario?: string,
   contrasenia?: string,
   fechaNacimiento?: Date,
-  propiedades?: [IPropiedad],
   direccion?: IDireccion,
   compras?: [ICompra],
   id?: number,
@@ -58,7 +56,6 @@ function new_(
     nombreUsuario: (nombreUsuario ?? ''),
     contrasenia: (contrasenia ?? ''),
     fechaNacimiento: (fechaNacimiento ? new Date(fechaNacimiento) : new Date()),
-    propiedades: (propiedades ?? [{} as IPropiedad]),
     direccion: (direccion ?? Direccion.new()),
     compras: (compras ?? [{} as ICompra])
   };
@@ -72,7 +69,7 @@ function from(param: object): IUsuario {
     throw new Error(INVALID_CONSTRUCTOR_PARAM);
   }
   const p = param as IUsuario;
-  return new_(p.dni, p.mail, p.telefono, p.nombre, p.apellido, p.nombreUsuario, p.contrasenia, p.fechaNacimiento, p.propiedades, p.direccion, p.compras, p.id);
+  return new_(p.dni, p.mail, p.telefono, p.nombre, p.apellido, p.nombreUsuario, p.contrasenia, p.fechaNacimiento, p.direccion, p.compras, p.id);
 }
 
 /**
@@ -91,7 +88,6 @@ function isUsuario(arg: unknown): boolean {
     'nombreUsuario' in arg && typeof arg.nombreUsuario === 'string' &&
     'contrasenia' in arg && typeof arg.contrasenia === 'string' &&
     'fechaNacimiento' in arg && moment(arg.fechaNacimiento as string | Date).isValid() &&
-    'propiedades' in arg && Array.isArray(arg.propiedades) &&
     'direccion' in arg && Direccion.isDireccion(arg.direccion) &&
     'compras' in arg && Array.isArray(arg.compras) && arg.compras.every(Compra.isCompra)
   );

@@ -1,5 +1,6 @@
 import moment from 'moment';
 import Propiedad, { IPropiedad } from './Propiedad';
+import Usuario, { IUsuario } from './Usuario';
 
 
 // **** Variables **** //
@@ -14,6 +15,7 @@ export interface ICompra {
   propiedad: IPropiedad;
   calificacion: number;
   comentario: string;
+  vendedor: IUsuario;
 }
 
 
@@ -26,11 +28,13 @@ function new_(
   propiedad?: IPropiedad,
   calificacion?: number,
   comentario?: string,
+  vendedor?: IUsuario,
 ): ICompra {
   return {
     propiedad: (propiedad ?? Propiedad.new()),
     calificacion: (calificacion ?? 0),
     comentario: (comentario ?? ''),
+    vendedor: (vendedor ?? Usuario.new()),
   };
 }
 
@@ -42,7 +46,7 @@ function from(param: object): ICompra {
     throw new Error(INVALID_CONSTRUCTOR_PARAM);
   }
   const p = param as ICompra;
-  return new_(p.propiedad, p.calificacion, p.comentario);
+  return new_(p.propiedad, p.calificacion, p.comentario, p.vendedor);
 }
 
 /**
@@ -54,7 +58,8 @@ function isCompra(arg: unknown): boolean {
     typeof arg === 'object' &&
     'propiedad' in arg && Propiedad.isPropiedad(arg.propiedad) && 
     'calificacion' in arg && typeof arg.calificacion === 'number' &&
-    'comentario' in arg && typeof arg.comentario === 'string'
+    'comentario' in arg && typeof arg.comentario === 'string' && 
+    'vendedor' in arg && Usuario.isUsuario(arg.vendedor)
   );
 }
 
