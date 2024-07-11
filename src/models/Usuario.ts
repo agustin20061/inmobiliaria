@@ -15,6 +15,9 @@ const INVALID_CONSTRUCTOR_PARAM = 'nameOrObj arg must a string or an object ' +
 
 export interface IUsuario {
   id: number;
+  dni: number;
+  mail: string;
+  telefono: string;
   nombre: string;
   apellido: string;
   nombreUsuario: string;
@@ -22,7 +25,7 @@ export interface IUsuario {
   fechaNacimiento: Date;
   propiedades: [IPropiedad];
   direccion: IDireccion;
-  compras: [ICompra]
+  compras: [ICompra];
 }
 
 
@@ -32,6 +35,9 @@ export interface IUsuario {
  * Create new User.
  */
 function new_(
+  dni?: number,
+  mail?: string,
+  telefono?: string,
   nombre?: string,
   apellido?: string,
   nombreUsuario?: string,
@@ -40,10 +46,13 @@ function new_(
   propiedades?: [IPropiedad],
   direccion?: IDireccion,
   compras?: [ICompra],
-  id?: number,// id last cause usually set by db
+  id?: number,
 ): IUsuario {
   return {
     id: (id ?? -1),
+    dni: (dni ?? 0),
+    mail: (mail ?? ''),
+    telefono: (telefono ?? ''),
     nombre: (nombre ?? ''),
     apellido: (apellido ?? ''),
     nombreUsuario: (nombreUsuario ?? ''),
@@ -63,7 +72,7 @@ function from(param: object): IUsuario {
     throw new Error(INVALID_CONSTRUCTOR_PARAM);
   }
   const p = param as IUsuario;
-  return new_(p.nombre, p.apellido, p.nombreUsuario, p.contrasenia, p.fechaNacimiento, p.propiedades, p.direccion, p.compras, p.id);
+  return new_(p.dni, p.mail, p.telefono, p.nombre, p.apellido, p.nombreUsuario, p.contrasenia, p.fechaNacimiento, p.propiedades, p.direccion, p.compras, p.id);
 }
 
 /**
@@ -74,6 +83,9 @@ function isUsuario(arg: unknown): boolean {
     !!arg &&
     typeof arg === 'object' &&
     'id' in arg && typeof arg.id === 'number' && 
+    'dni' in arg && typeof arg.dni === 'number' &&
+    'mail' in arg && typeof arg.mail === 'string' &&
+    'telefono' in arg && typeof arg.telefono === 'string' &&
     'nombre' in arg && typeof arg.nombre === 'string' &&
     'apellido' in arg && typeof arg.apellido === 'string' &&
     'nombreUsuario' in arg && typeof arg.nombreUsuario === 'string' &&

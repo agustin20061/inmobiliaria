@@ -23,7 +23,7 @@ export interface ICaracteristicas {
   cantidadPlantas: number;
   cantidadGarages: number;
   cantidadElevadores: number;
-  parrila: boolean;
+  parrilla: boolean;
   pileta: boolean;
   balcon: boolean;
   patio: boolean;
@@ -34,7 +34,7 @@ export interface ICaracteristicas {
 
 // **** Functions **** //
 
-/**
+/**{}
  * Create new User.
  */
 function new_(
@@ -48,7 +48,7 @@ function new_(
   cantidadPlantas?: number,
   cantidadGarages?: number,
   cantidadElevadores?: number,
-  parrila?: boolean,
+  parrilla?: boolean,
   pileta?: boolean,
   balcon?: boolean,
   patio?: boolean,
@@ -66,7 +66,7 @@ function new_(
     cantidadPlantas: (cantidadPlantas ?? 0),
     cantidadGarages: (cantidadGarages ?? 0),
     cantidadElevadores: (cantidadElevadores ?? 0),
-    parrila: (parrila ?? false),
+    parrilla: (parrilla ?? false),
     pileta: (pileta ?? false),
     balcon: (balcon ?? false),
     patio: (patio ?? false),
@@ -83,7 +83,7 @@ function from(param: object): ICaracteristicas {
     throw new Error(INVALID_CONSTRUCTOR_PARAM);
   }
   const p = param as ICaracteristicas;
-  return new_(p.cantidadAmbientes, p.m2Totales, p.m2Cubiertos, p.cantidadBanios, p.cantidadDormitorios, p.cantidadToilettes, p.anioConstruccionRemodelacion, p.cantidadPlantas, p.cantidadGarages, p.cantidadElevadores, p.parrila, p.pileta, p.balcon, p.patio, p.gimnasio, p.seguridad);
+  return new_(p.cantidadAmbientes, p.m2Totales, p.m2Cubiertos, p.cantidadBanios, p.cantidadDormitorios, p.cantidadToilettes, p.anioConstruccionRemodelacion, p.cantidadPlantas, p.cantidadGarages, p.cantidadElevadores, p.parrilla, p.pileta, p.balcon, p.patio, p.gimnasio, p.seguridad);
 }
 
 /**
@@ -103,7 +103,7 @@ function isCaracteristicas(arg: unknown): boolean {
     'cantidadPlantas' in arg && typeof arg.cantidadPlantas === 'number' &&
     'cantidadGarages' in arg && typeof arg.cantidadGarages === 'number' &&
     'cantidadElevadores' in arg && typeof arg.cantidadElevadores === 'number' &&
-    'parrila' in arg && typeof arg.parrila === 'boolean' &&
+    'parrilla' in arg && typeof arg.parrilla === 'boolean' &&
     'pileta' in arg && typeof arg.pileta === 'boolean' &&
     'balcon' in arg && typeof arg.balcon === 'boolean' &&
     'patio' in arg && typeof arg.patio === 'boolean' &&

@@ -1,4 +1,4 @@
-import { IUser } from '@src/models/User';
+import { IUsuario } from '@src/models/Usuario';
 import { getRandomInt } from '@src/util/misc';
 import orm from './MockOrm';
 
@@ -8,7 +8,7 @@ import orm from './MockOrm';
 /**
  * Get one user.
  */
-async function getOne(email: string): Promise<IUser | null> {
+async function getOne(email: string): Promise<IUsuario | null> {
   const db = await orm.openDb();
   for (const user of db.users) {
     if (user.email === email) {
@@ -34,7 +34,7 @@ async function persists(id: number): Promise<boolean> {
 /**
  * Get all users.
  */
-async function getAll(): Promise<IUser[]> {
+async function getAll(): Promise<IUsuario[]> {
   const db = await orm.openDb();
   return db.users;
 }
@@ -42,7 +42,7 @@ async function getAll(): Promise<IUser[]> {
 /**
  * Add one user.
  */
-async function add(user: IUser): Promise<void> {
+async function add(user: IUsuario): Promise<void> {
   const db = await orm.openDb();
   user.id = getRandomInt();
   db.users.push(user);
@@ -52,14 +52,14 @@ async function add(user: IUser): Promise<void> {
 /**
  * Update a user.
  */
-async function update(user: IUser): Promise<void> {
+async function update(user: IUsuario): Promise<void> {
   const db = await orm.openDb();
   for (let i = 0; i < db.users.length; i++) {
     if (db.users[i].id === user.id) {
       const dbUser = db.users[i];
       db.users[i] = {
         ...dbUser,
-        name: user.name,
+        name: user.nombre,
         email: user.email,
       };
       return orm.saveDb(db);
