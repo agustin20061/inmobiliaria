@@ -1,8 +1,4 @@
-import moment from 'moment';
-import Usuario, { IUsuario } from './Usuario';
 import { IMensaje } from './Mensaje';
-import { isContext } from 'vm';
-
 
 // **** Variables **** //
 
@@ -15,8 +11,8 @@ const INVALID_CONSTRUCTOR_PARAM = 'nameOrObj arg must a string or an object ' +
 export interface IChat {
   id: number;
   mensajes: [IMensaje];
-  vendedor: IUsuario;
-  comprador: IUsuario;
+  vendedor: number;
+  comprador: number;
 }
 
 
@@ -27,15 +23,15 @@ export interface IChat {
  */
 function new_(
     mensajes?: [IMensaje],
-    vendedor?: IUsuario,
-    comprador?: IUsuario,
+    vendedor?: number,
+    comprador?: number,
     id?: number,
     ): IChat {
     return {
         id: (id ?? -1),
         mensajes: (mensajes ?? [{} as IMensaje]),
-        vendedor: (vendedor ?? {} as IUsuario),
-        comprador: (comprador ?? {} as IUsuario),
+        vendedor: (vendedor ?? 0),
+        comprador: (comprador ?? 0),
     };
     };
 
@@ -59,8 +55,8 @@ function isChat(arg: unknown): boolean {
     typeof arg === 'object' &&
     'id' in arg && typeof arg.id === 'number' && 
     "mensajes" in arg && Array.isArray(arg.mensajes) &&
-    "vendedor" in arg && Usuario.isUsuario(arg) &&
-    "comprador" in arg && Usuario.isUsuario(arg)
+    "vendedor" in arg && typeof arg.vendedor === "number" &&
+    "comprador" in arg && typeof arg.comprador === "number"
   );
 }
 

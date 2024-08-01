@@ -1,9 +1,3 @@
-import moment from 'moment';
-import { IPropiedad } from './Propiedad';
-import { IDireccion } from './Direccion';
-import Direccion from './Direccion';
-
-
 // **** Variables **** //
 
 const INVALID_CONSTRUCTOR_PARAM = 'nameOrObj arg must a string or an object ' + 

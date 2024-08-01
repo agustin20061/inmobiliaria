@@ -1,10 +1,4 @@
 import moment from 'moment';
-import Propiedad, { IPropiedad } from './Propiedad';
-import { IDireccion } from './Direccion';
-import Direccion from './Direccion';
-import Compra, { ICompra } from './Compra';
-import { IUsuario } from './Usuario';
-
 
 // **** Variables **** //
 

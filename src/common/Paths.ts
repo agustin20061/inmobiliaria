@@ -5,11 +5,28 @@
 
 export default {
   Base: '/api',
-  Users: {
-    Base: '/users',
-    Get: '/all',
-    Add: '/add',
-    Update: '/update',
-    Delete: '/delete/:id',
+  Usuario: {
+    Base: '/usuario',
+    Get: '/',
+    GetOne: '/:id',
+    Add: '/',
+    Update: '/',
+    Delete: '/:id',
+  },
+  Chat: {
+    Base: '/chat',
+    Get: '/',
+    GetOne: '/:id',
+    Add: '/',
+    Update: '/',
+    Delete: '/:id',
+  },
+  Propiedad: {
+    Base: '/propiedad',
+    Get: '/',
+    GetOne: '/:id',
+    Add: '/',
+    Update: '/',
+    Delete: '/:id',
   },
 } as const;

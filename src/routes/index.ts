@@ -2,8 +2,12 @@ import { Router } from 'express';
 import jetValidator from 'jet-validator';
 
 import Paths from '../common/Paths';
-import User from '@src/models/User';
-import UserRoutes from './UserRoutes';
+import Usuario from '@src/models/Usuario';
+import Chat from '@src/models/Chat';
+import Propiedad from '@src/models/Propiedad';
+import UsuarioRoutes from './UsuarioRoutes';
+import ChatRoutes from './ChatRoutes';
+import PropiedadRoutes from './PropiedadRoutes';
 
 
 // **** Variables **** //
@@ -14,37 +18,113 @@ const apiRouter = Router(),
 
 // ** Add UserRouter ** //
 
-const userRouter = Router();
+const usuarioRouter = Router();
+const chatRouter = Router();
+const propiedadRouter = Router();
 
 // Get all users
-userRouter.get(
-  Paths.Users.Get,
-  UserRoutes.getAll,
+usuarioRouter.get(
+  Paths.Usuario.Get,
+  UsuarioRoutes.getAll,
+);
+
+// Get one users
+usuarioRouter.get(
+  Paths.Usuario.GetOne,
+  UsuarioRoutes.getOne,
 );
 
 // Add one user
-userRouter.post(
-  Paths.Users.Add,
-  validate(['user', User.isUser]),
-  UserRoutes.add,
+usuarioRouter.post(
+  Paths.Usuario.Add,
+  validate(['usuario', Usuario.isUsuario]),
+  UsuarioRoutes.add,
 );
 
 // Update one user
-userRouter.put(
-  Paths.Users.Update,
-  validate(['user', User.isUser]),
-  UserRoutes.update,
+usuarioRouter.put(
+  Paths.Usuario.Update,
+  validate(['usuario', Usuario.isUsuario]),
+  UsuarioRoutes.update,
 );
 
 // Delete one user
-userRouter.delete(
-  Paths.Users.Delete,
+usuarioRouter.delete(
+  Paths.Usuario.Delete,
   validate(['id', 'number', 'params']),
-  UserRoutes.delete,
+  UsuarioRoutes.delete,
+);
+
+// Get all users
+chatRouter.get(
+  Paths.Chat.Get,
+  ChatRoutes.getAll,
+);
+
+// Get one users
+chatRouter.get(
+  Paths.Chat.GetOne,
+  ChatRoutes.getOne,
+);
+
+// Add one user
+chatRouter.post(
+  Paths.Chat.Add,
+  validate(['chat', Chat.isChat]),
+  ChatRoutes.add,
+);
+
+// Update one user
+chatRouter.put(
+  Paths.Chat.Update,
+  validate(['chat', Chat.isChat]),
+  ChatRoutes.update,
+);
+
+// Delete one user
+chatRouter.delete(
+  Paths.Chat.Delete,
+  validate(['id', 'number', 'params']),
+  ChatRoutes.delete,
+);
+
+// Get all users
+propiedadRouter.get(
+  Paths.Propiedad.Get,
+  PropiedadRoutes.getAll,
+);
+
+// Get one users
+propiedadRouter.get(
+  Paths.Propiedad.GetOne,
+  PropiedadRoutes.getOne,
+);
+
+// Add one user
+propiedadRouter.post(
+  Paths.Propiedad.Add,
+  validate(['propiedad', Propiedad.isPropiedad]),
+  PropiedadRoutes.add,
+);
+
+// Update one user
+propiedadRouter.put(
+  Paths.Propiedad.Update,
+  validate(['propiedad', Propiedad.isPropiedad]),
+  PropiedadRoutes.update,
+);
+
+// Delete one user
+propiedadRouter.delete(
+  Paths.Propiedad.Delete,
+  validate(['id', 'number', 'params']),
+  PropiedadRoutes.delete,
 );
 
 // Add UserRouter
-apiRouter.use(Paths.Users.Base, userRouter);
+apiRouter.use(Paths.Propiedad.Base, propiedadRouter);
+apiRouter.use(Paths.Chat.Base, chatRouter);
+apiRouter.use(Paths.Usuario.Base, usuarioRouter);
 
 
 // **** Export default **** //

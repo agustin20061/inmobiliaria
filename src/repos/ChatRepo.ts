@@ -1,6 +1,6 @@
-import { IUsuario } from '@src/models/Usuario';
 import { getRandomInt } from '@src/util/misc';
-import { Usuario } from './Conexion';
+import { IChat } from '@src/models/Chat';
+import { Chat } from './Conexion';
 
 // **** Functions **** //
 
@@ -8,7 +8,7 @@ import { Usuario } from './Conexion';
  * Get one user.
  */
 async function getOne(id: number): Promise<any | null> {
-  return await Usuario.findOne({ id: id });
+  return await Chat.findOne({ id: id });
 }
 
 /**
@@ -22,32 +22,32 @@ async function persists(id: number): Promise<boolean> {
  * Get all users.
  */
 async function getAll(): Promise<any[]> {
-  return await Usuario.find({});
+  return await Chat.find({});
 }
 
 
 /**
  * Add one user.
  */
-async function add(usuario: IUsuario): Promise<any> {
+async function add(chat: IChat): Promise<any> {
   do{
-    usuario.id = getRandomInt()
-  } while(await persists(usuario.id));
-  return await (new Usuario(usuario)).save();
+    chat.id = getRandomInt()
+  } while(await persists(chat.id));
+  return await (new Chat(chat)).save();
 }
 
 /**
  * Update a user.
  */
-async function update(usuario: IUsuario): Promise<any> {
-  return await Usuario.findOneAndUpdate({ id: usuario.id }, new Usuario(usuario), { new: true });
+async function update(chat: IChat): Promise<any> {
+  return await Chat.findOneAndUpdate({ id: chat.id }, new Chat(chat), { new: true });
 }
 
 /**
  * Delete one user.
  */
 async function delete_(id: number): Promise<any> {
-  return await Usuario.findOneAndDelete({ id: id });
+  return await Chat.findOneAndDelete({ id: id });
 }
 
 

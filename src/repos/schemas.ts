@@ -44,11 +44,9 @@ const chatSchema = new mongoose.Schema({
 });
 
 const preguntaSchema = new mongoose.Schema({
-    id: Number,
     texto: String,
     respuesta: String,
     usuario: Number,
-    propiedad: Number
 });
 
 const propiedadSchema = new mongoose.Schema({
@@ -58,11 +56,11 @@ const propiedadSchema = new mongoose.Schema({
     duenio: Number,
     precio: Number,
     alquiler: Boolean,
-    tipoPropiedad: TipoPropiedad,
+    tipoPropiedad: Number,
     expensas: Number,
     imagenes: [String],
     preguntas: [preguntaSchema],
-    caracteristicas: [caracteristicasSchema]
+    caracteristicas: caracteristicasSchema
 });
 
 const compraSchema = new mongoose.Schema({
@@ -82,8 +80,7 @@ const usuarioSchema = new mongoose.Schema({
     nombreUsuario: String,
     contrasenia: String,
     fechaNacimiento: Date,
-    direccion: direccionSchema,
-    compras: [compraSchema]
+    direccion: direccionSchema
 });
 
 /*const tipoPropiedadSchema = new mongoose.Schema({

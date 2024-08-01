@@ -1,6 +1,6 @@
-import { IUsuario } from '@src/models/Usuario';
 import { getRandomInt } from '@src/util/misc';
-import { Usuario } from './Conexion';
+import { IPropiedad } from '@src/models/Propiedad';
+import { Propiedad } from './Conexion';
 
 // **** Functions **** //
 
@@ -8,7 +8,7 @@ import { Usuario } from './Conexion';
  * Get one user.
  */
 async function getOne(id: number): Promise<any | null> {
-  return await Usuario.findOne({ id: id });
+  return await Propiedad.findOne({ id: id });
 }
 
 /**
@@ -22,32 +22,32 @@ async function persists(id: number): Promise<boolean> {
  * Get all users.
  */
 async function getAll(): Promise<any[]> {
-  return await Usuario.find({});
+  return await Propiedad.find({});
 }
 
 
 /**
  * Add one user.
  */
-async function add(usuario: IUsuario): Promise<any> {
+async function add(propiedad: IPropiedad): Promise<any> {
   do{
-    usuario.id = getRandomInt()
-  } while(await persists(usuario.id));
-  return await (new Usuario(usuario)).save();
+    propiedad.id = getRandomInt()
+  } while(await persists(propiedad.id));
+  return await (new Propiedad(propiedad)).save();
 }
 
 /**
  * Update a user.
  */
-async function update(usuario: IUsuario): Promise<any> {
-  return await Usuario.findOneAndUpdate({ id: usuario.id }, new Usuario(usuario), { new: true });
+async function update(propiedad: IPropiedad): Promise<any> {
+  return await Propiedad.findOneAndUpdate({ id: propiedad.id }, new Propiedad(propiedad), { new: true });
 }
 
 /**
  * Delete one user.
  */
 async function delete_(id: number): Promise<any> {
-  return await Usuario.findOneAndDelete({ id: id });
+  return await Propiedad.findOneAndDelete({ id: id });
 }
 
 
