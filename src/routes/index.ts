@@ -122,10 +122,9 @@ propiedadRouter.delete(
 );
 
 // Add UserRouter
-apiRouter.use(Paths.Propiedad.Base, propiedadRouter);
-apiRouter.use(Paths.Chat.Base, chatRouter);
 apiRouter.use(Paths.Usuario.Base, usuarioRouter);
-
+apiRouter.use(Paths.Chat.Base, chatRouter);
+apiRouter.use(Paths.Propiedad.Base, propiedadRouter);
 
 // **** Export default **** //
 
