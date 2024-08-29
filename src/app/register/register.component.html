@@ -1,0 +1,20 @@
+<form (ngSubmit)="register()" class="custom-form">
+    <input type="email" [(ngModel)]="email" name="email" placeholder="Email" required />
+    <input type="password" [(ngModel)]="password" name="password" placeholder="Password" required />
+    <input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required />
+    <input type="text" [(ngModel)]="nombre" name="nombre" placeholder="Nombre" required />
+    <input type="text" [(ngModel)]="lastname" name="lastname" placeholder="Apellido" required />
+    <input type="number" [(ngModel)]="dni" name="dni" placeholder="DNI" required />
+    <input type="number" [(ngModel)]="telefono" name="telefono" placeholder="Teléfono" required />
+    <input type="text" [(ngModel)]="nombreUsuario" name="nombreUsuario" placeholder="Nombre de Usuario" required />
+    <input type="date" [(ngModel)]="fechaNacimiento" name="fechaNacimiento" placeholder="Fecha de Nacimiento" required />
+    <input type="text" [(ngModel)]="calle" name="calle" placeholder="Calle" required />
+    <input type="number" [(ngModel)]="numero" name="numero" placeholder="Número" required />
+    <input type="number" [(ngModel)]="piso" name="piso" placeholder="Piso" />
+    <input type="text" [(ngModel)]="departamento" name="departamento" placeholder="Departamento" />
+    <input type="text" [(ngModel)]="provincia" name="provincia" placeholder="Provincia" required />
+    <input type="text" [(ngModel)]="ciudad" name="ciudad" placeholder="Ciudad" required />
+    <input type="number" [(ngModel)]="codigoPostal" name="codigoPostal" placeholder="Código Postal" required />
+    <button type="submit">Register</button>
+  </form>
+  
