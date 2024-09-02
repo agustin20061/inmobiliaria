@@ -25,7 +25,7 @@ export class UsuarioService {
     return this.http.get<IUsuario>(`${this.baseUrl}/${id}`);
   }
   agregarUsuario(usuario: IUsuario): Observable<any> {
-    return this.http.post(this.baseUrl, usuario);
+    return this.http.post(this.baseUrl,{"usuario": usuario}, this.httpOptions);
   }
   cancelarLibros(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);

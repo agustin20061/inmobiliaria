@@ -1,34 +1,49 @@
-import { Component, inject } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Router, RouterModule, RouterOutlet } from '@angular/router'; 
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
 import { UsuarioService } from '../usuario.service';
-import { ActivatedRoute } from '@angular/router';
-import { IUsuario } from '../../models/usuario.model';
 import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule,
-    ReactiveFormsModule, CommonModule,RouterOutlet, RouterModule],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+    RouterModule
+  ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  usuarios: IUsuario[]=[];
-  resultados: IUsuario[]=[];
-  email?: string;
-  password?: string;
- // servicio = inject(UsuarioService);
+  formLog: FormGroup;
 
-  
-  constructor(private servicio: UsuarioService) {
-    this.servicio.obtenerTodosLosUsuarios().subscribe((data) => {
-      this.usuarios= data;
+  constructor(
+    private servicio: UsuarioService,
+    private formBuilder: FormBuilder,
+    private router: Router
+  ) {
+    this.formLog = this.formBuilder.group({
+      mail: ['', [Validators.required, Validators.email]],
+      contra: ['', Validators.required]
     });
   }
-  login() {
-    console.log(this.email);
-    console.log(this.password);
+
+  log(): void {
+    if (this.formLog.valid) {
+      const { mail, contra } = this.formLog.value;
+      console.log(mail, contra);
+      // Descomentar para enviar datos al servicio
+      /*
+      this.servicio.logUser(mail, contra).subscribe((res: any) => {
+        localStorage.setItem('token', res.token);
+        this.router.navigateByUrl('/');
+      });
+      */
+    } else {
+      console.log('Formulario inválido');
+      this.formLog.markAllAsTouched();
+    }
   }
- 
 }
